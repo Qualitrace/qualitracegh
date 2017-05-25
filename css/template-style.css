@@ -500,6 +500,19 @@ footer p, footer a:visited, footer a, footer a:hover {
 	color: #6c7c84;
 	font-size: 0.8em;
 }
+
+.margin-for-team {
+	padding: 2em 0em;
+	text-align: center;
+	color: white;
+}
+.dum-text {
+	color: #ffffff;
+}
+.button-dim {
+	margin-top: 20px;
+}
+
 @media screen and (max-width: 768px) {
   header {
   	position: relative;
