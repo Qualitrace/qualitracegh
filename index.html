@@ -8,16 +8,23 @@
       <link rel="stylesheet" href="css/responsee.css">
       <link rel="stylesheet" href="owl-carousel/owl.carousel.css">
       <link rel="stylesheet" href="owl-carousel/owl.theme.css">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+      
       <!-- CUSTOM STYLE -->
       <link rel="stylesheet" href="css/template-style.css">
       <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-      <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
-      <script type="text/javascript" src="js/jquery-ui.min.js"></script>    
+      <script
+			  src="https://code.jquery.com/jquery-3.2.1.min.js"
+			  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			  crossorigin="anonymous"></script>
+      <!--<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>-->
+      <!--<script type="text/javascript" src="js/jquery-ui.min.js"></script>    -->
       <script type="text/javascript" src="js/modernizr.js"></script>
       <script type="text/javascript" src="js/responsee.js"></script>
       <script type="text/javascript" src="js/template-scripts.js"></script> 
+
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
                  
       <!--[if lt IE 9]>
 	      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -52,7 +59,7 @@
                      <li><a href="#about-us">About Us</a></li>
                      <li><a href="#services">Services</a></li>
                      <li><a href="#contact">Contact</a></li>
-                     <li><button class="button-dim btn btn-info">Trace/Authenticate</button></li>
+                     <li><button class="button-dim btn btn-info" id="traceBtn" data-toggle="modal" data-target="#testModal">Trace/Authenticate</button></li>
                   </ul>
                </div>
             </div>
@@ -301,6 +308,61 @@
             </div>
          </div>
       </footer>
+
+
+      <div id="" title="Basic dialog">
+        
+      </div>
+
+      <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+              <form action="">
+                <input id="codeInput" type="text" name="code">
+                <button type="submit" id="getUSSDCode">Submit</button>
+              </form>
+                <div class="collapseshow" id="collapseExample">
+                  <div class="well">
+                    <h4 id="responseHead"></h4>
+                    <h5 id="responseBody"></h5>
+                  </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        $(document).ready(function(){
+         
+
+          $("#getUSSDCode").bind('click', function(e){
+            e.preventDefault();
+            var code = $("#codeInput").val();
+            var url_base = "https://crossorigin.me/http://nelsbels.com/works/tracegh/ussd/api.php";
+            var data ={
+              "code": code
+            };
+            $.get(url_base,data, function(response){
+              response = JSON.parse(response);
+              var heading = response.msg;
+              var description = response.msg1;
+
+              $("#responseHead").text(heading);
+              $("#responseBody").text(description);
+            });
+              
+          })
+        });
+       </script>
       <script type="text/javascript" src="owl-carousel/owl.carousel.js"></script>
       <script type="text/javascript">
          jQuery(document).ready(function($) {
